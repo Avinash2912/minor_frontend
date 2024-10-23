@@ -1,0 +1,145 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "evidenceId",
+				"type": "uint256"
+			}
+		],
+		"name": "EvidenceCreated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_recipientName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_recipientAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_locationObtained",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_dateCollected",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_timeCollected",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_collectionTechnicianName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_phoneNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isComputer",
+				"type": "bool"
+			}
+		],
+		"name": "createEvidence",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_evidenceId",
+				"type": "uint256"
+			}
+		],
+		"name": "getEvidence",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "recipientName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "recipientAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "locationObtained",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "dateCollected",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "timeCollected",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionTechnicianName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "phoneNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isComputer",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct DecentralisedJudicialSystem.Evidence",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
