@@ -46,6 +46,7 @@ declare global {
         text: string;
         button: string;
         navigateTo: string;
+        img:string
     };
 
     // Health record structure matching the smart contract data

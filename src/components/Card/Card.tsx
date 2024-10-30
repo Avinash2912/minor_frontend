@@ -7,16 +7,18 @@ export default function Card({
     text,
     button,
     navigateTo,
+    img,
 }: {
     title: string;
     text: string;
     button: string;
     navigateTo: string;
+    img:string;
 }): JSX.Element {
     return (
         <div className="w-80 h-[28rem] bg-gradient-to-br from-teal-100 via-white to-green-100 rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col">
             <img
-                src="https://via.placeholder.com/320x192"
+                src={img}
                 alt="Card Image"
                 className="w-full h-48 object-cover rounded-t-2xl"
             />

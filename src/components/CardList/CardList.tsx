@@ -6,18 +6,22 @@ const cardsData: CardInfo[] = [
         text: "Unlock Data Fast! Securely access authenticated data stored on the blockchain. Swift, secure, and tamper-proof.",
         button: "Explore",
         navigateTo: "/get-data",
+        img:'/images/Blockchain.jpg',
+        
     },
     {
         title: "Create Data",
         text: "Upload yourself! Upload and safeguard data with blockchain technology. Streamlined, secure, and transparent submission process.",
         button: "Get Started",
         navigateTo: "/create-data",
+        img:'/images/dataprocessing-scaled.jpg'
     },
     {
         title: "Transfer Data",
         text: "Pass the Baton! Effortlessly transfer disability data with smart contracts. Transparent, traceable, and secure chain of custody.",
         button: "Transfer Now",
         navigateTo: "/",
+        img:'/images/transfer.jpg',
     },
 ];
 
@@ -32,6 +36,7 @@ export default function CardList(): JSX.Element {
                         text={card.text}
                         button={card.button}
                         navigateTo={card.navigateTo}
+                        img={card.img}
                     />
                 );
             })}

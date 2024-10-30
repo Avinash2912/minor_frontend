@@ -1,6 +1,6 @@
 export default function HomepageInfo(): JSX.Element {
     return (
-        <div className="w-full h-3/4 p-8 lg:p-16 bg-blue-600"> {/* Changed from bg-black to bg-green-200 */}
+        <div className="w-full h-1/4 p-8 lg:p-16 bg-teal-900"> {/* Changed from bg-black to bg-green-200 */}
             <div className="text-center mb-12">
                 <h1 className="text-3xl md:text-5xl font-extrabold uppercase text-white">
                     <span className="gradient-text">Revolutionizing Disabled Verification</span>

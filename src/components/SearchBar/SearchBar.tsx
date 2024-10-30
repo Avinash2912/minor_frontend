@@ -47,7 +47,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
                 />
                 <button
                     type="submit"
-                    className="w-11 h-11 ml-[-3.5rem] bg-transparent border-none outline-none"
+                    className="w-11 h-11 ml-[3.5rem] bg-transparent border-none outline-none flex justify-end "
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
 
             {!hasSearched && (
                 <Image
-                    src="/images/searchbar.png"
+                    src="/images/Blockchain.jpg"
                     alt="gavel"
                     width={1000}
                     height={500}

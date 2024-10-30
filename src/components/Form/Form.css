@@ -1,6 +1,4 @@
 
-
-/* Light shadow effect for text */
 .shadow-light,
 .hover\:shadow-light:hover {
   text-shadow: 1px 1px 0 rgba(244, 244, 240, 1), 2px 2px 0 rgba(81, 76, 77, .3);
@@ -16,13 +14,14 @@ textarea:focus {
 
 /* Button styles */
 .button {
+  background-color: blue-600;
   display: inline-block;
   margin-top: 1.5rem;
   border-radius: 0.5rem; /* Slightly larger radius for a softer look */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Increased shadow for depth */
   padding: 0.75rem 1.5rem; /* More padding for a better touch target */
   text-decoration: none;
-  border: none;
+  border: 2px solid black;
   font-size: 3rem; /* Consistent font size */
   transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
 }
@@ -338,13 +337,5 @@ textarea:focus {
   color: #dbcdcc;
 }
 
-/* Add similar responsive styles for other breakpoints as needed */
 
-/* Ensure overall consistency */
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif; /* Choose a modern font */
-  color: #333; /* General text color */
-  background-color: #f4f4f4; /* Light background for contrast */
-}
+
