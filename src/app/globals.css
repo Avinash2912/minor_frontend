@@ -1,11 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 * {
   box-sizing: border-box;
@@ -19,34 +18,33 @@ body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
-  /* background: linear-gradient(145deg, #ff8a5c, #e73c7e, #3f7ae5, #3fe5ab); */
-  background:#393E46;
-
-  background-size: cover;
-  color: white;
+  background:#42d3cb36;
+  color: black;
 }
+
 
 .button {
   position: relative;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 12px 30px; /* Adjusted padding for larger buttons */
+  border-radius: 25px; /* More rounded corners */
   border: none;
   color: #fff;
   cursor: pointer;
-  background-color: #2a40e8;
+  background-color: #00796b; 
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  font-size: 1rem; 
 }
 
 .button:hover {
-  background-color: blue;
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background-color: #13d7b6; /* Darker teal on hover */
+  transform: translateY(-3px); /* Lifting effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Shadow increase on hover */
 }
 
 .button:active {
-  transform: scale(0.98);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px); /* Slight pressing effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .button:before,
@@ -62,48 +60,65 @@ body {
 }
 
 .button:hover:before {
-  top: -70%;
-  background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
-    radial-gradient(circle, #7d2ae8 20%, transparent 20%);
-  background-size: 10% 10%, 20% 20%, 15% 15%;
+  top: -80%;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.3) 20%, transparent 30%);
+  background-size: 10% 10%, 20% 20%;
   background-position: 50% 120%;
   animation: bubble-top 0.6s ease;
 }
 
+
 @keyframes bubble-top {
   0% {
-    background-position: 5% 90%, 10% 90%, 15% 90%;
+    background-position: 5% 90%, 10% 90%;
   }
   50% {
-    background-position: 0% 80%, 10% 40%, 20% 20%;
+    background-position: 0% 80%, 10% 40%;
   }
   100% {
-    background-position: 0% 70%, 10% 30%, 20% 10%;
-    background-size: 0% 0%;
+    background-position: 0% 70%, 10% 30%;
   }
 }
 
-.button:hover::after {
-  bottom: -70%;
-  background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%);
-  background-size: 15% 15%, 18% 18%;
-  background-position: 50% 0%;
-  animation: bubble-bottom 0.6s ease;
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif; /* Elegant font for headings */
 }
 
-@keyframes bubble-bottom {
-  0% {
-    background-position: 10% -10%, 30% 10%;
-  }
-  50% {
-    background-position: 20% 80%, 45% 60%;
-  }
-  100% {
-    background-position: 0% 90%, 20% 90%;
-    background-size: 0% 0%;
-  }
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(90deg, #FF9A00, #FF4B00);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(90deg, #FF9A00, #FF4B00);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: white;
+}
+
+
+.container {
+  padding: 2rem 1rem;
+}
+
+.section {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 

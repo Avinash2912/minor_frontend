@@ -1,36 +1,268 @@
+// "use client";
+
+// import { PhotoIcon } from "@heroicons/react/24/solid";
+// import { useState } from "react";
+// import { createHealthRecord } from "../../api";
+// import Button from "../Button";
+
+// export default function Form(): JSX.Element {
+// 	const [formData, setFormData] = useState<FormDataType>({
+// 		patientName: "",
+// 		patientAddress: "",
+// 		certificateDescription: "",
+// 		doctorName: "",
+// 		conditionDescription: "",
+// 		email: "",
+// 		startTime: "",
+// 		endTime: "",
+// 		country: "",
+// 		contactNumber: "",
+// 		streetAddress: "",
+// 		city: "",
+// 		region: "",
+// 		postalCode: "",
+// 		deviceStatus: {
+// 			powerOn: false,
+// 			shutdown: false,
+// 			network: false,
+// 		},
+// 	});
+
+// 	const [patientID, setpatientID] = useState<string | null>(null);
+// 	const [showForm, setShowForm] = useState<boolean>(true);
+// 	const [fileUploaded, setFileUploaded] = useState<boolean>(false);
+
+// 	const handleChange = (field: keyof FormDataType, value: string | boolean) => {
+// 		setFormData((prevData) => ({
+// 			...prevData,
+// 			[field]: value,
+// 		}));
+// 	};
+
+// 	const handleSubmit = async (e: React.MouseEvent) => {
+// 		e.preventDefault();
+// 		const date = new Date().toDateString().split("T")[0];
+// 		const patientID = await createHealthRecord(formData, date);
+// 		localStorage.setItem(patientID, JSON.stringify(formData));
+// 		setpatientID(patientID);
+// 		setTimeout(() => setShowForm(false), 700);
+// 	};
+
+// 	const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+// 		const file = e.target.files?.[0];
+// 		if (file) {
+// 			setFileUploaded(true);
+// 		}
+// 	};
+
+// 	return showForm ? (
+// 		<form className="p-8 max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-lg">
+// 			<h2 className="text-xl font-bold text-teal-300 mb-6">Submit Disability Data</h2>
+// 			<p className="text-sm text-gray-300 mb-4">
+// 				Protect the integrity of your data and ensure accurate and fast data verification.
+// 			</p>
+// 			<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+// 				<div>
+// 					<label className="block text-sm font-medium text-white">Patient Name</label>
+// 					<input
+// 						type="text"
+// 						name="patientName"
+// 						className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 						placeholder="Enter Name"
+// 						onChange={(e) => handleChange("patientName", e.target.value)}
+// 						value={formData.patientName}
+// 					/>
+// 				</div>
+// 				<div>
+// 					<label className="block text-sm font-medium text-white">Patient Address</label>
+// 					<input
+// 						type="text"
+// 						name="patientAddress"
+// 						className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 						placeholder="Enter Patient Address"
+// 						onChange={(e) => handleChange("patientAddress", e.target.value)}
+// 						value={formData.patientAddress}
+// 					/>
+// 				</div>
+// 				{fileUploaded ? (
+// 					<div className="text-green-500 col-span-full">File uploaded successfully!</div>
+// 				) : (
+// 					<div className="col-span-full">
+// 						<label className="block text-sm font-medium text-white">Upload Certificate (PDF, JPG, PNG)</label>
+// 						<div className="mt-2 flex justify-center border border-dashed border-teal-500 rounded-lg p-4">
+// 							<PhotoIcon className="h-12 w-12 text-teal-300" aria-hidden="true" />
+// 							<label className="cursor-pointer mt-4 flex flex-col items-center">
+// 								<span className="text-teal-300 font-semibold">Upload a file</span>
+// 								<input
+// 									type="file"
+// 									className="sr-only"
+// 									onChange={handleFileChange}
+// 								/>
+// 							</label>
+// 							<p className="text-xs text-gray-300">PNG, JPG, GIF up to 10MB</p>
+// 						</div>
+// 					</div>
+// 				)}
+// 				<div className="col-span-full">
+// 					<label className="block text-sm font-medium text-white">Certificate Description</label>
+// 					<textarea
+// 						className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 						rows={3}
+// 						placeholder="Describe the item in detail."
+// 						onChange={(e) => handleChange("certificateDescription", e.target.value)}
+// 						value={formData.certificateDescription}
+// 					/>
+// 				</div>
+// 			</div>
+
+// 			<div className="border-t border-gray-600 mt-6 pt-6">
+// 				<h2 className="text-lg font-bold text-teal-300 mb-4">Contact Details</h2>
+// 				<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Doctor Name</label>
+// 						<input
+// 							type="text"
+// 							name="doctorName"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("doctorName", e.target.value)}
+// 							value={formData.doctorName}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Condition Description</label>
+// 						<input
+// 							type="text"
+// 							name="conditionDescription"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("conditionDescription", e.target.value)}
+// 							value={formData.conditionDescription}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Email</label>
+// 						<input
+// 							type="email"
+// 							name="email"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("email", e.target.value)}
+// 							value={formData.email}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Start Time</label>
+// 						<input
+// 							type="time"
+// 							name="startTime"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("startTime", e.target.value)}
+// 							value={formData.startTime}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">End Time</label>
+// 						<input
+// 							type="time"
+// 							name="endTime"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("endTime", e.target.value)}
+// 							value={formData.endTime}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Country</label>
+// 						<select
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("country", e.target.value)}
+// 							value={formData.country}
+// 						>
+// 							<option>India</option>
+// 							<option>Canada</option>
+// 							<option>USA</option>
+// 						</select>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Contact Number</label>
+// 						<input
+// 							type="tel"
+// 							name="contactNumber"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("contactNumber", e.target.value)}
+// 							value={formData.contactNumber}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Street Address</label>
+// 						<input
+// 							type="text"
+// 							name="streetAddress"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("streetAddress", e.target.value)}
+// 							value={formData.streetAddress}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">City</label>
+// 						<input
+// 							type="text"
+// 							name="city"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("city", e.target.value)}
+// 							value={formData.city}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Region</label>
+// 						<input
+// 							type="text"
+// 							name="region"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("region", e.target.value)}
+// 							value={formData.region}
+// 						/>
+// 					</div>
+// 					<div>
+// 						<label className="block text-sm font-medium text-white">Postal Code</label>
+// 						<input
+// 							type="text"
+// 							name="postalCode"
+// 							className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+// 							onChange={(e) => handleChange("postalCode", e.target.value)}
+// 							value={formData.postalCode}
+// 						/>
+// 					</div>
+// 				</div>
+// 			</div>
+
+// 			<div className="mt-6">
+// 				<Button onClick={handleSubmit} className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
+// 					Submit
+// 				</Button>
+// 			</div>
+// 		</form>
+// 	) : (
+// 		<div className="p-8 max-w-5xl mx-auto bg-gray-700 rounded-lg shadow-lg text-center">
+// 			<h2 className="text-xl font-bold text-teal-300 mb-4">Submission Successful!</h2>
+// 			<p className="text-gray-300 mb-4">
+// 				Your data has been submitted successfully. Your Patient ID is:{" "}
+// 				<span className="font-bold text-teal-300">{patientID}</span>
+// 			</p>
+// 			<Button onClick={() => window.location.reload()} className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
+// 				Submit Another Record
+// 			</Button>
+// 		</div>
+// 	);
+// }
+
+
+
+
+
 "use client";
 
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createHealthRecord } from "../../api";
-import { uploadEvidence } from "../../api/ipfs";
 import Button from "../Button";
-
-function getBase64Image(img: HTMLImageElement): string {
-	const canvas = document.createElement("canvas");
-	canvas.width = img.width;
-	canvas.height = img.height;
-
-	const ctx = canvas.getContext("2d");
-	if (ctx) {
-		ctx.drawImage(img, 0, 0);
-
-		const dataURL = canvas.toDataURL("image/png");
-
-		return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-	} else {
-		throw new Error("Canvas context is not supported.");
-	}
-};
-
-function getBase64(file: File): Promise<string | ArrayBuffer | null> {
-	return new Promise((resolve, reject) => {
-		const reader = new FileReader()
-		reader.readAsDataURL(file)
-		reader.onload = () => resolve(reader.result)
-		reader.onerror = error => reject(error)
-	})
-};
 
 export default function Form(): JSX.Element {
 	const [formData, setFormData] = useState<FormDataType>({
@@ -55,14 +287,11 @@ export default function Form(): JSX.Element {
 		},
 	});
 
-	const [patientID, setpatientID] = useState<string | null>(null);
+	const [patientID, setPatientID] = useState<string | null>(null);
 	const [showForm, setShowForm] = useState<boolean>(true);
 	const [fileUploaded, setFileUploaded] = useState<boolean>(false);
 
-	const handleChange = (
-		field: keyof FormDataType,
-		value: string | boolean
-	) => {
+	const handleChange = (field: keyof FormDataType, value: string | boolean) => {
 		setFormData((prevData) => ({
 			...prevData,
 			[field]: value,
@@ -73,446 +302,226 @@ export default function Form(): JSX.Element {
 		e.preventDefault();
 		const date = new Date().toDateString().split("T")[0];
 		const patientID = await createHealthRecord(formData, date);
-
 		localStorage.setItem(patientID, JSON.stringify(formData));
-		setpatientID(patientID);
-
+		setPatientID(patientID);
 		setTimeout(() => setShowForm(false), 700);
-		// show evidence id to user after submission fter animation
-		// file upload animation left - future work
 	};
 
 	const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
-		if (!file) {
-			console.log("No file selected");
-			return;
+		if (file) {
+			setFileUploaded(true);
 		}
-		// const buffer = Buffer.from(await file.arrayBuffer());
-        // const dataUrl = `data:${file.type};base64,${buffer.toString('base64')}`;
-		
-        setFileUploaded(true);
-        // localStorage.setItem("ipfsImage", dataUrl);
 	};
 
-	return showForm ? (
-		<form className="p-8 max-w-5xl mx-auto">
-			<div className="space-y-12">
-				<div className="border-b border-gray-900/10 pb-12 font-bold">
-					<h2 className="text-base font-semibold leading-7 text-white">
-						Submit Disability Data
-					</h2>
-					<p className="mt-1 text-sm leading-6 text-white font-medium">
+	// Use effect to ensure the hydration works correctly
+	useEffect(() => {
+		// Ensure consistent initial render
+		setShowForm(true);
+	}, []);
+
+	return (
+		<>
+			{showForm ? (
+				<form className="p-8 max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-lg">
+					<h2 className="text-xl font-bold text-teal-300 mb-6">Submit Disability Data</h2>
+					<p className="text-sm text-gray-300 mb-4">
 						Protect the integrity of your data and ensure accurate and fast data verification.
 					</p>
-
-					<div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-						<div className="sm:col-span-2">
-							<label
-								htmlFor="patientName"
-								className="block text-sm font-medium leading-6 text-white"
-							>
-								Patient Name
-							</label>
-							<div className="mt-2">
-								<div className="flex rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 max-w-xs">
-									<input
-										type="text"
-										name="patientName"
-										id="patientName"
-										autoComplete="patientName"
-										className="block flex-1 border-0 py-1.5 pl-1 text-white placeholder:text-white focus:ring-0 sm:text-sm sm:leading-6 font-light bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-										placeholder=" Enter Name"
-										onChange={(e) =>
-											handleChange(
-												"patientName",
-												e.target.value     
-											)
-										}
-										value={formData.patientName}
-									/> 
-								</div>
-							</div>
+					<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+						<div>
+							<label className="block text-sm font-medium text-white">Patient Name</label>
+							<input
+								type="text"
+								name="patientName"
+								className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+								placeholder="Enter Name"
+								onChange={(e) => handleChange("patientName", e.target.value)}
+								value={formData.patientName}
+							/>
 						</div>
-						<div className="col-span-2">
-							<label
-								htmlFor="patientAddress"
-								className="block text-sm font-medium leading-6 text-white"
-							>
-								Patient Address
-							</label>
-							<div className="mt-2">
-								<div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-									<input
-										id="patientAddress"
-										name="patientAddress"
-										placeholder=" Enter patientAddress"
-										className="block flex-1 border-0 py-1.5 pl-1 text-white placeholder:text-white focus:ring-0 sm:text-sm sm:leading-6 font-light bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-										value={formData.patientAddress}
-										onChange={(e) =>
-											handleChange(
-												"patientAddress",
-												e.target.value
-											)
-										}
-									/>
-								</div>
-							</div>
+						<div>
+							<label className="block text-sm font-medium text-white">Patient Address</label>
+							<input
+								type="text"
+								name="patientAddress"
+								className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+								placeholder="Enter Patient Address"
+								onChange={(e) => handleChange("patientAddress", e.target.value)}
+								value={formData.patientAddress}
+							/>
 						</div>
 						{fileUploaded ? (
-							<div className="text-green-500">
-								File uploaded successfully!
-							</div>
+							<div className="text-green-500 col-span-full">File uploaded successfully!</div>
 						) : (
 							<div className="col-span-full">
-								<label
-									htmlFor="cover-photo"
-									className="block text-sm font-bold leading-6 text-white"
-								>
-									Upload Certificate(PDF, JPG, PNG)
-								</label>
-								<div className="mt-2 flex justify-center rounded-lg border border-dashed border-zinc-50/25 px-6 py-10">
-									<div className="text-center">
-										<PhotoIcon
-											className="mx-auto h-12 w-12 text-white"
-											aria-hidden="true"
+								<label className="block text-sm font-medium text-white">Upload Certificate (PDF, JPG, PNG)</label>
+								<div className="mt-2 flex justify-center border border-dashed border-teal-500 rounded-lg p-4">
+									<PhotoIcon className="h-12 w-12 text-teal-300" aria-hidden="true" />
+									<label className="cursor-pointer mt-4 flex flex-col items-center">
+										<span className="text-teal-300 font-semibold">Upload a file</span>
+										<input
+											type="file"
+											className="sr-only"
+											onChange={handleFileChange}
 										/>
-										<div className="mt-4 flex text-sm leading-6 text-white">
-											<label
-												htmlFor="file-upload"
-												className="relative cursor-pointer font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500 bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-											>
-												<span className="text-black">
-													Upload a file
-												</span>
-												<input
-													id="file-upload"
-													name="file-upload"
-													type="file"
-													className="sr-only"
-													onChange={handleFileChange}
-												/>
-											</label>
-											<p className="pl-1">
-												or drag and drop
-											</p>
-										</div>
-										<p className="text-xs leading-5 text-gray-100">
-											PNG, JPG, GIF up to 10MB
-										</p>
-									</div>
+									</label>
+									<p className="text-xs text-gray-300">PNG, JPG, GIF up to 10MB</p>
 								</div>
 							</div>
 						)}
 						<div className="col-span-full">
-							<label
-								htmlFor="Item certificateDescription"
-								className="block text-sm font-medium leading-6 text-white"
-							>
-								Certificate Description
-							</label>
-							<div className="mt-2">
-								<textarea
-									id="about"
-									name="about"
-									rows={3}
-									className="block w-full border-0 py-1.5 text-white ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 font-light bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-									defaultValue={""}
-									placeholder="Describe the item in detail. Include all the relevant information."
-									onChange={(e) =>
-										handleChange(
-											"certificateDescription",
-											e.target.value
-										)
-									}
-									value={formData.certificateDescription}
-								/>
-							</div>
+							<label className="block text-sm font-medium text-white">Certificate Description</label>
+							<textarea
+								className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+								rows={3}
+								placeholder="Describe the item in detail."
+								onChange={(e) => handleChange("certificateDescription", e.target.value)}
+								value={formData.certificateDescription}
+							/>
 						</div>
 					</div>
-				</div>
 
-				<div className="border-b border-gray-900/10 pb-12">
-					<h2 className="text-base font-bold leading-7 text-white">
-						Contact Details
-					</h2>
-					<p className="mt-1 text-sm leading-6 text-white-200">
-						Details of the patient with disability.
-					</p>
-
-					<div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-						<div className="sm:col-span-2">
-							<label
-								htmlFor="name"
-								className="block text-sm font-medium leading-6 text-white"
-							>
-								Doctor Name
-							</label>
-							<div className="mt-2">
+					<div className="border-t border-gray-600 mt-6 pt-6">
+						<h2 className="text-lg font-bold text-teal-300 mb-4">Contact Details</h2>
+						<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+							<div>
+								<label className="block text-sm font-medium text-white">Doctor Name</label>
 								<input
 									type="text"
-									name="technician-name"
-									id="technician-name"
-									className="block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange(
-											"doctorName",
-											e.target.value
-										)
-									}
+									name="doctorName"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("doctorName", e.target.value)}
 									value={formData.doctorName}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-3">
-							<label
-								htmlFor="conditionDescription"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Condition Description
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Condition Description</label>
 								<input
 									type="text"
 									name="conditionDescription"
-									id="conditionDescription"
-									className="block w-full border-0 py-1.5 text-white ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("conditionDescription", e.target.value)
-									}
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("conditionDescription", e.target.value)}
 									value={formData.conditionDescription}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-2">
-							<label
-								htmlFor="email"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Email
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Email</label>
 								<input
-									id="email"
-									name="email"
 									type="email"
-									className="block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("email", e.target.value)
-									}
+									name="email"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("email", e.target.value)}
 									value={formData.email}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-1">
-							<label
-								htmlFor="start-time"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Start Time
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Start Time</label>
 								<input
-									id="start-time"
-									name="start-time"
 									type="time"
-									className="block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-lg backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange(
-											"startTime",
-											e.target.value
-										)
-									}
+									name="startTime"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("startTime", e.target.value)}
 									value={formData.startTime}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-1">
-							<label
-								htmlFor="end-time"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								End Time
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">End Time</label>
 								<input
-									id="end-time"
-									name="end-time"
 									type="time"
-									className="block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("endTime", e.target.value)
-									}
+									name="endTime"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("endTime", e.target.value)}
 									value={formData.endTime}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-3">
-							<label
-								htmlFor="country"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Country
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Country</label>
 								<select
-									id="country"
-									name="country"
-									autoComplete="country-name"
-									className="block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-sm backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("country", e.target.value)
-									}
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("country", e.target.value)}
 									value={formData.country}
 								>
-									<option>India</option>
-									<option>Canada</option>
-									<option>USA</option>
+									<option value="">Select a country</option>
+									<option value="India">India</option>
+									<option value="USA">USA</option>
+									<option value="UK">UK</option>
 								</select>
 							</div>
-						</div>
-
-						<div className="sm:col-span-3">
-							<label
-								htmlFor="phone-number"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Phone Number
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Contact Number</label>
 								<input
-									type="text"
-									name="phone-number"
-									id="phone-number"
-									placeholder="+91 1234567890"
-									className="block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white rounded-md bg-opacity-40 shadow-sm backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange(
-											"contactNumber",
-											e.target.value
-										)
-									}
+									type="tel"
+									name="contactNumber"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("contactNumber", e.target.value)}
 									value={formData.contactNumber}
 								/>
 							</div>
-						</div>
-
-						<div className="col-span-full">
-							<label
-								htmlFor="street-patientAddress"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								Street Address
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Street Address</label>
 								<input
 									type="text"
-									name="street-patientAddress"
-									id="street-patientAddress"
-									className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white bg-opacity-40 shadow-sm backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange(
-											"streetAddress",
-											e.target.value
-										)
-									}
+									name="streetAddress"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("streetAddress", e.target.value)}
 									value={formData.streetAddress}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-2 sm:col-start-1">
-							<label
-								htmlFor="city"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								City
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">City</label>
 								<input
 									type="text"
 									name="city"
-									id="city"
-									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white bg-opacity-40 backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("city", e.target.value)
-									}
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("city", e.target.value)}
 									value={formData.city}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-2">
-							<label
-								htmlFor="region"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								State / Province
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Region</label>
 								<input
 									type="text"
 									name="region"
-									id="region"
-									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white bg-opacity-40 backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange("region", e.target.value)
-									}
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("region", e.target.value)}
 									value={formData.region}
 								/>
 							</div>
-						</div>
-
-						<div className="sm:col-span-2">
-							<label
-								htmlFor="postal-code"
-								className="block text-sm font-medium leading-6 text-gray-100"
-							>
-								ZIP / Postal code
-							</label>
-							<div className="mt-2">
+							<div>
+								<label className="block text-sm font-medium text-white">Postal Code</label>
 								<input
 									type="text"
-									name="postal-code"
-									id="postal-code"
-									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white bg-opacity-40 backdrop-blur-13 border-opacity-18"
-									onChange={(e) =>
-										handleChange(
-											"postalCode",
-											e.target.value
-										)
-									}
+									name="postalCode"
+									className="mt-1 block w-full rounded-md bg-gray-700 text-white placeholder-gray-400 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-300"
+									onChange={(e) => handleChange("postalCode", e.target.value)}
 									value={formData.postalCode}
 								/>
 							</div>
 						</div>
 					</div>
+
+					<Button onClick={handleSubmit} className="w-full text-xl bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-6">
+						Submit
+					</Button>
+				</form>
+			) : (
+				<div className="p-8 max-w-5xl mx-auto bg-gray-700 rounded-lg shadow-lg text-center">
+					<h2 className="text-xl font-bold text-teal-300 mb-4">Submission Successful!</h2>
+					<p className="text-gray-300 mb-4">
+						Your data has been submitted successfully. Your Patient ID is:{" "}
+						<span className="font-bold text-teal-300">{patientID}</span>
+					</p>
+					<Button onClick={async () => {
+						// Optional: simulate async operation before reloading
+						await new Promise(resolve => setTimeout(resolve, 500)); // simulate async
+						window.location.reload();
+					}} className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
+						Submit Another Record
+					</Button>
 				</div>
-			</div>
-			<div
-				className="mt-6 flex items-center justify-end gap-x-6"
-				onClick={handleSubmit}
-			>
-				<Button />
-			</div>
-		</form>
-	) : (
-		<div className="flex items-center justify-center h-3/4">
-			<div className="max-w-md p-8 bg-white rounded-lg bg-opacity-50 shadow-lg backdrop-blur-13 border border-opacity-40">
-				<div>
-					<h6 className="mb-4 text-3xl text-gray-700 font-medium">
-						Your Patient ID is
-					</h6>
-				</div>
-				<p className="mb-4 font-normal text-gray-800 text-lg text-center">
-					{patientID}
-				</p>
-			</div>
-		</div>
+			)}
+		</>
 	);
 }
+
