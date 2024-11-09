@@ -1,67 +1,100 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.17 <=0.8.18;
+pragma solidity ^0.8.19;
 
-contract DecentralisedJudicialSystem {
-    struct Evidence {
-        string recipientName;
-        string recipientAddress; // Physical address of the recipient
-        string locationObtained;
-        string description;
-        string dateCollected; // Unix timestamp for the date collected
-        string timeCollected; // Unix timestamp for the time collected
-        string collectionTechnicianName;
-        string phoneNumber;
-        bool isComputer;
+contract HealthRecordSystem {
+    struct HealthRecord {
+        string patientName;
+        string patientAddress;
+        string certificateDescription;
+        string conditionDescription;
+        string doctorName;
+        string contactNumber;
+        bool isWheelchairUser;
+        uint256 date;
+        uint256 startTime;
+        uint256 endTime;
+        address createdBy;
+        bool isValid;
     }
 
-    address private admin;
-    mapping(uint256 => Evidence) private evidences;
-    uint256 private nextEvidenceId;
-    event EvidenceCreated(uint256 indexed evidenceId);
+    mapping(uint256 => HealthRecord) public healthRecords;
+    uint256 public recordCount;
+    
+    event HealthRecordCreated(
+        uint256 indexed recordId,
+        string patientName,
+        address createdBy,
+        uint256 date
+    );
 
     constructor() {
-        admin = msg.sender;
-        nextEvidenceId = 1;
+        recordCount = 0;
     }
 
-    modifier onlyAdmin() {
-        require(msg.sender == admin, "Only admin can call this function");
-        _;
-    }
-
-    function createEvidence(
-        string memory _recipientName,
-        string memory _recipientAddress,
-        string memory _locationObtained,
-        string memory _description,
-        string memory _dateCollected,
-        string memory _timeCollected,
-        string memory _collectionTechnicianName,
-        string memory _phoneNumber,
-        bool _isComputer
-    ) public onlyAdmin returns (uint256) {
-        evidences[nextEvidenceId] = Evidence({
-            recipientName: _recipientName,
-            recipientAddress: _recipientAddress,
-            locationObtained: _locationObtained,
-            description: _description,
-            dateCollected: _dateCollected,
-            timeCollected: _timeCollected,
-            collectionTechnicianName: _collectionTechnicianName,
-            phoneNumber: _phoneNumber,
-            isComputer: _isComputer
+    function createHealthRecord(
+        string memory _patientName,
+        string memory _patientAddress,
+        string memory _certificateDescription,
+        string memory _conditionDescription,
+        string memory _doctorName,
+        string memory _contactNumber,
+        bool _isWheelchairUser,
+        uint256 _date,
+        uint256 _startTime,
+        uint256 _endTime
+    ) public returns (uint256) {
+        recordCount++;
+        
+        healthRecords[recordCount] = HealthRecord({
+            patientName: _patientName,
+            patientAddress: _patientAddress,
+            certificateDescription: _certificateDescription,
+            conditionDescription: _conditionDescription,
+            doctorName: _doctorName,
+            contactNumber: _contactNumber,
+            isWheelchairUser: _isWheelchairUser,
+            date: _date,
+            startTime: _startTime,
+            endTime: _endTime,
+            createdBy: msg.sender,
+            isValid: true
         });
 
-        nextEvidenceId++;
-        uint256 newEvidenceId = nextEvidenceId - 1;
-        emit EvidenceCreated(newEvidenceId);
-        return newEvidenceId;
+        emit HealthRecordCreated(recordCount, _patientName, msg.sender, _date);
+        
+        return recordCount;
     }
 
-    function getEvidence(
-        uint256 _evidenceId
-    ) public view returns (Evidence memory) {
-        require(_evidenceId < nextEvidenceId, "Invalid evidence ID");
-        return evidences[_evidenceId];
+    function getHealthRecord(uint256 _recordId) public view returns (
+        string memory patientName,
+        string memory patientAddress,
+        string memory certificateDescription,
+        string memory conditionDescription,
+        string memory doctorName,
+        string memory contactNumber,
+        bool isWheelchairUser,
+        uint256 date,
+        uint256 startTime,
+        uint256 endTime,
+        address createdBy,
+        bool isValid
+    ) {
+        require(_recordId > 0 && _recordId <= recordCount, "Invalid record ID");
+        HealthRecord storage record = healthRecords[_recordId];
+        
+        return (
+            record.patientName,
+            record.patientAddress,
+            record.certificateDescription,
+            record.conditionDescription,
+            record.doctorName,
+            record.contactNumber,
+            record.isWheelchairUser,
+            record.date,
+            record.startTime,
+            record.endTime,
+            record.createdBy,
+            record.isValid
+        );
     }
 }

@@ -1,145 +1,263 @@
 [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "evidenceId",
-				"type": "uint256"
-			}
-		],
-		"name": "EvidenceCreated",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_recipientName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_recipientAddress",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_locationObtained",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_description",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_dateCollected",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_timeCollected",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_collectionTechnicianName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_phoneNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isComputer",
-				"type": "bool"
-			}
-		],
-		"name": "createEvidence",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_evidenceId",
-				"type": "uint256"
-			}
-		],
-		"name": "getEvidence",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "recipientName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "recipientAddress",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "locationObtained",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "dateCollected",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "timeCollected",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "collectionTechnicianName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "phoneNumber",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "isComputer",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct DecentralisedJudicialSystem.Evidence",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "patientName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "createdBy",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "date",
+        "type": "uint256"
+      }
+    ],
+    "name": "HealthRecordCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_patientName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_patientAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_certificateDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_conditionDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_doctorName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_contactNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isWheelchairUser",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_date",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_endTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "createHealthRecord",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getHealthRecord",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "patientName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "patientAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "certificateDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "conditionDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "doctorName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "contactNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isWheelchairUser",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "date",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "createdBy",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "isValid",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "healthRecords",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "patientName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "patientAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "certificateDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "conditionDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "doctorName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "contactNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isWheelchairUser",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "date",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "createdBy",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "isValid",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "recordCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
 ]

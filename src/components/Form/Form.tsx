@@ -40,7 +40,7 @@ export default function Form(): JSX.Element {
   };
 
   const handleSubmit = async (e: React.MouseEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     const date = new Date().toDateString().split("T")[0];
     const patientID = await createHealthRecord(formData, date);
     localStorage.setItem(patientID, JSON.stringify(formData));
@@ -72,7 +72,7 @@ export default function Form(): JSX.Element {
             Protect the integrity of your data and ensure accurate and fast data
             verification.
           </p>
-		  
+
           <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 ">
             <div>
               <label className="block text-sm font-medium text-white">
@@ -294,17 +294,15 @@ export default function Form(): JSX.Element {
               </div>
             </div>
           </div>
-		  <div className="m-4 text-2xl p-5 flex justify-center">
-			<Button
-            onClick={handleSubmit}
-            className=" text-2xl bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4  mt-5"
-          >
-            Submit Form
-          </Button></div>
-		
+          <div className="m-4 text-2xl p-5 flex justify-center">
+            <Button
+              onClick={handleSubmit}
+              className=" text-2xl bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4  mt-5"
+            >
+              Submit Form
+            </Button>
+          </div>
         </form>
-
-		
       ) : (
         <div className="max-w-5xl mx-auto p-8 bg-gray-800 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold text-teal-300 mb-6">
