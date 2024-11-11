@@ -39,6 +39,8 @@ export async function getHealthRecord(idx) {
 
   const contract = new ethers.Contract(contractAddress, contractAbi, provider);
 
+  console.log(idx);
+
   try {
     const res = await contract.connect(signer).getHealthRecord(idx);
     console.log("Health Record:", res);
