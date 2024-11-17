@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, className, children }) => {
             successText="Done"
             onClick={onClickHandler}
             className={className} // Add the className prop
-            color="blue-600"
+            color="[#AAD7DE]"
         />
     );
 };

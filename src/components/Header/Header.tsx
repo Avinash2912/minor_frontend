@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export default function Header(props: any): JSX.Element {
   const clickAnimation: string =
-    "relative max-w-fit pr-3 md:pr-0 py-1 after:bg-gradient-to-r from-teal-500 to-teal-700 after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300";
+    "relative max-w-fit pr-3 md:pr-0 py-1 after:bg-blue-500 after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300";
 
   //   connectWallet();
 
@@ -15,7 +15,7 @@ export default function Header(props: any): JSX.Element {
   }, []);
 
   return (
-    <header className="bg-gradient-to-r from-[#f0f9ff] via-[#e0f2fe] to-[#f0f9ff] backdrop-blur-md shadow-lg rounded-lg px-8 py-4">
+    <header className="bg-[#509AB7] backdrop-blur-md shadow-lg rounded-lg px-8 py-4">
       <nav className="flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -43,7 +43,7 @@ export default function Header(props: any): JSX.Element {
               </li>
             </ul>
             <Link href="/create-evidence">
-              <button className="px-5 py-2 bg-gradient-to-r from-teal-500 to-teal-700 text-white font-semibold shadow-md transition-transform duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-teal-600 hover:to-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500">
+              <button className="px-5 py-2 bg-blue-500 text-white font-semibold shadow-md transition-transform duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-teal-600 hover:to-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500">
                 CREATE
               </button>
             </Link>
@@ -53,3 +53,8 @@ export default function Header(props: any): JSX.Element {
     </header>
   );
 }
+
+
+
+
+

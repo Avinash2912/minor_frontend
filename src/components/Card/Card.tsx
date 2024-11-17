@@ -16,7 +16,7 @@ export default function Card({
     img:string;
 }): JSX.Element {
     return (
-        <div className="w-80 h-[28rem] bg-gradient-to-br from-teal-100 via-white to-green-100 rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col">
+        <div className="w-80 h-[30rem] bg-[#AAD7DE] rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col">
             <img
                 src={img}
                 alt="Card Image"

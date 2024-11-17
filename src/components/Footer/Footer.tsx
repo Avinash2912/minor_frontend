@@ -6,7 +6,7 @@ export default function Footer(): JSX.Element {
         "relative w-fit pr-3 md:pr-0 py-1 after:bg-gradient-to-r from-[#2b68e0] to-[#00b894] after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 md:mr-6";
     
     return (
-        <footer className="w-full bottom-0 left-0 backdrop-blur-2xl bg-teal-500 text-white h-1/6">
+        <footer className="w-full bottom-0 left-0 backdrop-blur-2xl bg-[#4A7B86] text-white h-1/6">
             <div className="flex justify-between p-4 ">
                 <Image
                     src="/images/logo.png"
