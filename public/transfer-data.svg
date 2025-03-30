@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1E293B"/>
+  
+  <!-- Background glow -->
+  <circle cx="400" cy="300" r="180" fill="url(#glow)" filter="url(#blur)"/>
+  
+  <!-- Connection path -->
+  <path d="M250 300C250 300 350 100 550 300C550 300 350 500 250 300Z" 
+        stroke="#0EA5E9" stroke-width="3" stroke-dasharray="8 8"/>
+  
+  <!-- Source node -->
+  <circle cx="250" cy="300" r="60" fill="#0EA5E9" filter="url(#glow-sm)"/>
+  <circle cx="250" cy="300" r="45" fill="#0284C7"/>
+  <path d="M230 300H270" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <path d="M250 280V320" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Target node -->
+  <circle cx="550" cy="300" r="60" fill="#0EA5E9" filter="url(#glow-sm)"/>
+  <circle cx="550" cy="300" r="45" fill="#0284C7"/>
+  <path d="M530 300H570" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Animated transfer particles -->
+  <circle cx="400" cy="300" r="8" fill="#7DD3FC">
+    <animateMotion 
+      path="M-150 0C-150 0 -50 -200 150 0C150 0 -50 200 -150 0Z"
+      dur="2s"
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="400" cy="300" r="8" fill="#7DD3FC">
+    <animateMotion 
+      path="M-150 0C-150 0 -50 -200 150 0C150 0 -50 200 -150 0Z"
+      dur="2s"
+      begin="0.5s"
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="400" cy="300" r="8" fill="#7DD3FC">
+    <animateMotion 
+      path="M-150 0C-150 0 -50 -200 150 0C150 0 -50 200 -150 0Z"
+      dur="2s"
+      begin="1s"
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Pulse animations -->
+  <circle cx="250" cy="300" r="70" stroke="#7DD3FC" stroke-width="2" opacity="0.5">
+    <animate attributeName="r" values="70;90" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="550" cy="300" r="70" stroke="#7DD3FC" stroke-width="2" opacity="0.5">
+    <animate attributeName="r" values="70;90" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Definitions -->
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="30"/>
+    </filter>
+    <filter id="glow-sm" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+    </filter>
+  </defs>
+</svg> 
